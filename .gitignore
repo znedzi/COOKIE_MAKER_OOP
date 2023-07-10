@@ -1,0 +1,7 @@
+# Katalogi
+node_modules/
+dist/
+
+# Pliki
+package-lock.json
+tsconfig.json
