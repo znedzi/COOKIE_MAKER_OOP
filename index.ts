@@ -1,5 +1,5 @@
 import * as express from 'express';
-import {Request, Response } from 'express';
+import {Router, Request, Response } from 'express';
 //static jest słowem zarezerowanym w js, aby go użyć zmieniamy mu nazwę
 import {Application, json, static as expressStatic_ } from 'express';
 import * as cookieParser from 'cookie-parser';
@@ -52,7 +52,7 @@ export class CookieMakerApp {
         });
     }
 
-    showErrorPage(res: , description: string) {
+    showErrorPage(res: Response , description: string) {
         res.render('error', {
             description,
         });

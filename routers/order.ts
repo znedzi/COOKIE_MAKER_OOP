@@ -1,12 +1,14 @@
 import * as express from 'express';
-import { Request, Response } from 'express';
-
+import { Router, Request, Response } from 'express';
+import { CookieMakerApp } from "../index";
 
 export class OrderRouter {
     
-    constructor(cmapp) {
-        this.cmapp = cmapp;
-        this.router = express.Router();
+    public readonly router: Router = Router();
+
+    constructor(
+        private cmapp: CookieMakerApp,
+    ) {
         this.setUpRoutes();
     }
 

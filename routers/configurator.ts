@@ -1,6 +1,6 @@
 //Reguest i Responce musi być zainportowany, żeby dobrze zadziałał z Typescriptem, w przeciwnym wypadku zadziała wesja Node, co będzie błędem
 import { Request, Response, Router } from "express";
-import { CookieMakerApp } from "..";
+import { CookieMakerApp } from "../index";
 
 
 export class ConfiguratorRouter {
@@ -11,7 +11,6 @@ export class ConfiguratorRouter {
     constructor(
         private cmapp: CookieMakerApp,
     ) {
-        this.router = Router();
         this.setUpRoutes();
     }
 
@@ -24,6 +23,7 @@ export class ConfiguratorRouter {
    private selectBase = (req: Request, res: Response): void => {
         const {baseName} = req.params;
         
+        //Typ Record, mniej restrykcyjny od Map
         if (!(this.cmapp.data.COOKIE_BASES as Record<string, number>)[baseName]) {
             return this.cmapp.showErrorPage(res, `There is no such base as ${baseName}.`);
         }
@@ -57,7 +57,7 @@ export class ConfiguratorRouter {
             });
     };
 
-    private deleteAddon = (req: Request, res: Response) => {
+    private deleteAddon = (req: Request, res: Response): void => {
         const {addonName} = req.params;
 
         const oldAddons = this.cmapp.getAddonsFromReq(req);
