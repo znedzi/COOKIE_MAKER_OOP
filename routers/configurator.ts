@@ -1,11 +1,12 @@
 //Reguest i Responce musi być zainportowany, żeby dobrze zadziałał z Typescriptem, w przeciwnym wypadku zadziała wesja Node, co będzie błędem
 import { Request, Response, Router } from "express";
 import { CookieMakerApp } from "../index";
+import { MyRouter } from "../types/my-routers";
 
+//klasa korzysta z implementacji MyRouter, ma to sens tylko wtedy jeżeli tworzymy wiele klas, ale te klasy mają ze sobą części wspólne
+export class ConfiguratorRouter implements MyRouter{
 
-export class ConfiguratorRouter {
-
-    static readonly urlPrefix = '/configurator';
+    public readonly urlPrefix = '/configurator';
     //stosujemy klasę jako typ
     //router jest publiczny ale tylko do odczytu nikt nie zmieni go z zewnątrz
     

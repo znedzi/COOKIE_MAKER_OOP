@@ -1,10 +1,11 @@
 import * as express from 'express';
 import { Router, Request, Response } from 'express';
 import { CookieMakerApp } from "../index";
+import { MyRouter } from '../types/my-routers';
 
-export class OrderRouter {
+export class OrderRouter implements MyRouter {
     
-    static readonly urlPrefix = '/order';
+    public readonly urlPrefix = '/order';
     public readonly router: Router = Router();
 
     constructor(

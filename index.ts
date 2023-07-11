@@ -47,13 +47,16 @@ export class CookieMakerApp {
 
         for (const router of this.routers){
             //dla każdego routera weź naszą aplikację użyj w niej dla prefiksu z tego routera.urlPrefix utwórz nowy router new router i weź z niego właściwość router
-            this.app.use(router.urlPrefix, new router(this).router);
+            //różnica po zmianie polega na tym, że nie musimy tutaj znać ścieżek, routery same decydują o swoich ścieżkach, wszystko tworzy się automatycznie
+            //tworzymy nowy obj i z niego następnie pobieramy ścieżkę  
+            const obj = new router(this);
+            this.app.use(obj.urlPrefix, obj.router);
         }
 
         //po staremu było w ten sposób (po nowemu powyżej z pętlą)
-        this.app.use(ConfiguratorRouter.urlPrefix, new HomeRouter(this).router);
-        this.app.use(ConfiguratorRouter.urlPrefix, new ConfiguratorRouter(this).router);
-        this.app.use(ConfiguratorRouter.urlPrefix, new OrderRouter(this).router);
+        // this.app.use(ConfiguratorRouter.urlPrefix, new HomeRouter(this).router);
+        // this.app.use(ConfiguratorRouter.urlPrefix, new ConfiguratorRouter(this).router);
+        // this.app.use(ConfiguratorRouter.urlPrefix, new OrderRouter(this).router);
     }
 
     _run(): void {
