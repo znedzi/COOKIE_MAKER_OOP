@@ -11,6 +11,7 @@ import {handlebarsHelpers} from "./utils/handlebars-helpers";
 import {COOKIE_BASES, COOKIE_ADDONS} from "./data/cookies-data";
 import { engine } from 'express-handlebars';
 import { Entries } from './types/entries';
+import { MyRouter } from './types/my-routers';
 
 export class CookieMakerApp {
     private app: Application;
@@ -49,7 +50,7 @@ export class CookieMakerApp {
             //dla każdego routera weź naszą aplikację użyj w niej dla prefiksu z tego routera.urlPrefix utwórz nowy router new router i weź z niego właściwość router
             //różnica po zmianie polega na tym, że nie musimy tutaj znać ścieżek, routery same decydują o swoich ścieżkach, wszystko tworzy się automatycznie
             //tworzymy nowy obj i z niego następnie pobieramy ścieżkę  
-            const obj = new router(this);
+            const obj: MyRouter = new router(this);
             this.app.use(obj.urlPrefix, obj.router);
         }
 
