@@ -19,6 +19,9 @@ export class CookieMakerApp {
         COOKIE_ADDONS,
     };
 
+    private readonly routers = [HomeRouter, ConfiguratorRouter, OrderRouter];
+
+
     constructor() {
         this._configureApp();
         this._setRoutes();
@@ -41,9 +44,16 @@ export class CookieMakerApp {
 
     //ustaw nasze routery (nasze scieżki)
     _setRoutes(): void {
-        this.app.use('/', new HomeRouter(this).router);
-        this.app.use('/configurator', new ConfiguratorRouter(this).router);
-        this.app.use('/order', new OrderRouter(this).router);
+
+        for (const router of this.routers){
+            //dla każdego routera weź naszą aplikację użyj w niej dla prefiksu z tego routera.urlPrefix utwórz nowy router new router i weź z niego właściwość router
+            this.app.use(router.urlPrefix, new router(this).router);
+        }
+
+        //po staremu było w ten sposób (po nowemu powyżej z pętlą)
+        this.app.use(ConfiguratorRouter.urlPrefix, new HomeRouter(this).router);
+        this.app.use(ConfiguratorRouter.urlPrefix, new ConfiguratorRouter(this).router);
+        this.app.use(ConfiguratorRouter.urlPrefix, new OrderRouter(this).router);
     }
 
     _run(): void {

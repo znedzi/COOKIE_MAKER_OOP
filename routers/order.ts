@@ -4,6 +4,7 @@ import { CookieMakerApp } from "../index";
 
 export class OrderRouter {
     
+    static readonly urlPrefix = '/order';
     public readonly router: Router = Router();
 
     constructor(

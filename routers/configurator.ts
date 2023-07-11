@@ -4,8 +4,11 @@ import { CookieMakerApp } from "../index";
 
 
 export class ConfiguratorRouter {
+
+    static readonly urlPrefix = '/configurator';
     //stosujemy klasę jako typ
     //router jest publiczny ale tylko do odczytu nikt nie zmieni go z zewnątrz
+    
     public readonly router: Router = Router();
 
     constructor(
